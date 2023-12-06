@@ -1,27 +1,43 @@
 text = 'Этот проект поможет тебе научиться обрабатывать текстовые данные и извлекать полезную информацию из них. Этот проект поможет тебе научиться обрабатывать текстовые данные и извлекать полезную информацию из них. Какие реальные применения у этого проекта?Обнаружение ключевых слов позволяет компаниям быстро понять, какие аспекты продукта или услуги вызывают наибольший интерес или проблемы у клиентов. Обнаружение ключевых слов и категоризация позволяют автоматически классифицировать новости, определять их тематику и помещать их в соответствующие разделы, такие как политика, экономика, спорт и т.д. Частотный анализ символов часто используется в криптографии (шифровании и дешифровании). В зашифрованных текстах или кодах вредоносных программ некоторые символы или символьные комбинации могут встречаться с необычно высокой частотой, так что частотный анализ пригодится и здесь. Как работает алгоритм?'
 
 text = text.lower()
-text = text.replace('т.д.', 'так далее')
-for i in text:
-  if not i.isalnum() and i != ' ':
-    text = text.replace(i, '')
-text = text.split(' ')
-print(text)
-words_count = {}
 
-for i in text:
+punctuation = [".", ",", "!", "?"]
+
+for char in punctuation:
+    text = text.replace(char, "")
+
+words = text.split()
+
+c = list(text)
+
+# анализ текста
+word_frequency = {}
+for i in words:
+  a = words.count(i)
+  word_frequency[i] = a
+word_frequency2 = {}
+for i in c:
   a = text.count(i)
-  words_count[i] = a
+  word_frequency2[i] = a
 
-for key in sorted(words_count):
-  print(key, words_count[key])
-
-max = len(text[0])
-min = len(text[0])
-for i in text:
+max = words[0]
+min = words[0]
+for i in words:
   if len(i) > len(max):
     max = i
   if len(i) < len(min):
     min = i
 
-print(min)
+print("Количество разных слов:", len(set(words)) )
+print("Самое длинное слово:", max)
+print("Самое короткое слово:", min)
+print("Частота слов:")
+for word, frequency in word_frequency.items():
+   print(f"{word}: {frequency}")
+print('Частота символов:')
+for word, frequency in word_frequency2.items():
+   print(f"{word}: {frequency}")
+
+if 1 != 1:
+  print("1 не равно 1")
